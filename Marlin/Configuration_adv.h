@@ -16,7 +16,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
 #pragma once
@@ -430,7 +430,11 @@
  *
  * Define one or both of these to override the default 0-255 range.
  */
+<<<<<<< Updated upstream
 #define FAN_MIN_PWM 35
+=======
+#define FAN_MIN_PWM 60
+>>>>>>> Stashed changes
 #define FAN_MAX_PWM 255
 
 /**
@@ -474,7 +478,11 @@
  * Multiple extruders can be assigned to the same pin in which case
  * the fan will turn on when any selected extruder is above the threshold.
  */
+<<<<<<< Updated upstream
 #define E0_AUTO_FAN_PIN PB0
+=======
+#define E0_AUTO_FAN_PIN FAN1_PIN //@act
+>>>>>>> Stashed changes
 #define E1_AUTO_FAN_PIN -1
 #define E2_AUTO_FAN_PIN -1
 #define E3_AUTO_FAN_PIN -1
@@ -840,11 +848,17 @@
 #define INVERT_Z_STEP_PIN false
 #define INVERT_E_STEP_PIN false
 
+<<<<<<< Updated upstream
 /**
  * Idle Stepper Shutdown
  * Set DISABLE_INACTIVE_? 'true' to shut down axis steppers after an idle period.
  * The Deactive Time can be overridden with M18 and M84. Set to 0 for No Timeout.
  */
+=======
+// Default stepper release if idle. Set to 0 to deactivate.
+// Steppers will shut down DEFAULT_STEPPER_DEACTIVE_TIME seconds after the last move when DISABLE_INACTIVE_? is true.
+// Time can be set by M18 and M84.
+>>>>>>> Stashed changes
 #define DEFAULT_STEPPER_DEACTIVE_TIME 240
 #define DISABLE_INACTIVE_X true
 #define DISABLE_INACTIVE_Y true
@@ -854,9 +868,13 @@
 // If the Nozzle or Bed falls when the Z stepper is disabled, set its resting position here.
 //#define Z_AFTER_DEACTIVATE Z_HOME_POS
 
+<<<<<<< Updated upstream
 // Default Minimum Feedrates for printing and travel moves
 #define DEFAULT_MINIMUMFEEDRATE       0.0     // (mm/s) Minimum feedrate. Set with M205 S.
 #define DEFAULT_MINTRAVELFEEDRATE     0.0     // (mm/s) Minimum travel feedrate. Set with M205 T.
+=======
+#define HOME_AFTER_DEACTIVATE  // Require rehoming after steppers are deactivated
+>>>>>>> Stashed changes
 
 // Minimum time that a segment needs to take as the buffer gets emptied
 #define DEFAULT_MINSEGMENTTIME        20000   // (µs) Set with M205 B.
@@ -1653,8 +1671,13 @@
   #define BABYSTEP_XY                     // Also enable X/Y Babystepping. Not supported on DELTA!
   #define BABYSTEP_INVERT_Z false           // Change if Z babysteps should go the other way
   #define BABYSTEP_MILLIMETER_UNITS       // Specify BABYSTEP_MULTIPLICATOR_(XY|Z) in mm instead of micro-steps
+<<<<<<< Updated upstream
   #define BABYSTEP_MULTIPLICATOR_Z  0.01      // (steps or mm) Steps or millimeter distance for each Z babystep
   #define BABYSTEP_MULTIPLICATOR_XY 0.05       // (steps or mm) Steps or millimeter distance for each XY babystep
+=======
+  #define BABYSTEP_MULTIPLICATOR_Z  0.05       // (steps or mm) Steps or millimeter distance for each Z babystep
+  #define BABYSTEP_MULTIPLICATOR_XY 0.1       // (steps or mm) Steps or millimeter distance for each XY babystep
+>>>>>>> Stashed changes
 
   //#define DOUBLECLICK_FOR_Z_BABYSTEPPING  // Double-click on the Status Screen for Z Babystepping.
   #if ENABLED(DOUBLECLICK_FOR_Z_BABYSTEPPING)
@@ -1695,7 +1718,11 @@
 #define LIN_ADVANCE
 #if ENABLED(LIN_ADVANCE)
   //#define EXTRA_LIN_ADVANCE_K // Enable for second linear advance constants
+<<<<<<< Updated upstream
   #define LIN_ADVANCE_K 0.06    // Unit: mm compression per 1mm/s extruder speed
+=======
+  #define LIN_ADVANCE_K 0.01    // Unit: mm compression per 1mm/s extruder speed
+>>>>>>> Stashed changes
   //#define LA_DEBUG            // If enabled, this will generate debug information output over USB.
   #define EXPERIMENTAL_SCURVE // Enable this option to permit S-Curve Acceleration
 #endif
@@ -2324,7 +2351,7 @@
   #endif
 
   #if AXIS_IS_TMC(X2)
-    #define X2_CURRENT      800
+    #define X2_CURRENT      850
     #define X2_CURRENT_HOME X2_CURRENT
     #define X2_MICROSTEPS    16
     #define X2_RSENSE         0.11
@@ -2342,7 +2369,7 @@
   #endif
 
   #if AXIS_IS_TMC(Y2)
-    #define Y2_CURRENT      800
+    #define Y2_CURRENT      850
     #define Y2_CURRENT_HOME Y2_CURRENT
     #define Y2_MICROSTEPS    16
     #define Y2_RSENSE         0.11
@@ -2360,7 +2387,7 @@
   #endif
 
   #if AXIS_IS_TMC(Z2)
-    #define Z2_CURRENT      800
+    #define Z2_CURRENT      850
     #define Z2_CURRENT_HOME Z2_CURRENT
     #define Z2_MICROSTEPS    16
     #define Z2_RSENSE         0.11
@@ -2369,7 +2396,7 @@
   #endif
 
   #if AXIS_IS_TMC(Z3)
-    #define Z3_CURRENT      800
+    #define Z3_CURRENT      850
     #define Z3_CURRENT_HOME Z3_CURRENT
     #define Z3_MICROSTEPS    16
     #define Z3_RSENSE         0.11
@@ -2378,7 +2405,7 @@
   #endif
 
   #if AXIS_IS_TMC(Z4)
-    #define Z4_CURRENT      800
+    #define Z4_CURRENT      850
     #define Z4_CURRENT_HOME Z4_CURRENT
     #define Z4_MICROSTEPS    16
     #define Z4_RSENSE         0.11
@@ -2387,7 +2414,11 @@
   #endif
 
   #if AXIS_IS_TMC(E0)
+<<<<<<< Updated upstream
     #define E0_CURRENT      900
+=======
+    #define E0_CURRENT      850
+>>>>>>> Stashed changes
     #define E0_MICROSTEPS    16
     #define E0_RSENSE         0.11
     #define E0_CHAIN_POS     -1
@@ -2395,7 +2426,7 @@
   #endif
 
   #if AXIS_IS_TMC(E1)
-    #define E1_CURRENT      800
+    #define E1_CURRENT      850
     #define E1_MICROSTEPS    16
     #define E1_RSENSE         0.11
     #define E1_CHAIN_POS     -1
@@ -2541,6 +2572,7 @@
    * Define your own with:
    * { <off_time[1..15]>, <hysteresis_end[-3..12]>, hysteresis_start[1..8] }
    */
+<<<<<<< Updated upstream
   #define CHOPPER_TIMING CHOPPER_DEFAULT_24V        // All axes (override below)
   //#define CHOPPER_TIMING_X  CHOPPER_DEFAULT_12V   // For X Axes (override below)
   //#define CHOPPER_TIMING_X2 CHOPPER_DEFAULT_12V
@@ -2558,6 +2590,9 @@
   //#define CHOPPER_TIMING_E5 CHOPPER_DEFAULT_12V
   //#define CHOPPER_TIMING_E6 CHOPPER_DEFAULT_12V
   //#define CHOPPER_TIMING_E7 CHOPPER_DEFAULT_12V
+=======
+  #define CHOPPER_TIMING CHOPPER_DEFAULT_24V
+>>>>>>> Stashed changes
 
   /**
    * Monitor Trinamic drivers
@@ -3275,7 +3310,11 @@
 
 #define GCODE_CASE_INSENSITIVE  // Accept G-code sent to the firmware in lowercase
 
+<<<<<<< Updated upstream
 #define REPETIER_GCODE_M360     // Add commands originally from Repetier FW
+=======
+#define REPETIER_GCODE_M360     // Add commands originally from Repetier FW @act
+>>>>>>> Stashed changes
 
 /**
  * CNC G-code options
