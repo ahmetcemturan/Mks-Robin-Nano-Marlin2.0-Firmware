@@ -171,11 +171,14 @@ void mks_gpio_test() {
     else
       disp_Limit_error();
     #endif
+
+    if (uiCfg.tmc_connect_state) disp_tmc_ok();
+    else disp_tmc_error();
 }
 
 void mks_hardware_test() {
   #if ENABLED(MKS_TEST)
-    if (millis() % 2000 < 1000) {
+    if (millis() % 1000 < 500) {
       WRITE(X_DIR_PIN, LOW);
       WRITE(Y_DIR_PIN, LOW);
       WRITE(Z_DIR_PIN, LOW);
@@ -221,9 +224,8 @@ void mks_hardware_test() {
     else {
     }
 
-    if (disp_state == PRINT_READY_UI)
-      mks_disp_test();
-
+    if (disp_state == PRINT_READY_UI) mks_disp_test();
+    
   #endif
 }
 

@@ -315,8 +315,8 @@ void tft_style_init() {
   tft_style_label_rel.line.width        = 0;
   tft_style_label_pre.text.letter_space = 0;
   tft_style_label_rel.text.letter_space = 0;
-  tft_style_label_pre.text.line_space   = -5;
-  tft_style_label_rel.text.line_space   = -5;
+  tft_style_label_pre.text.line_space   = 0;
+  tft_style_label_rel.text.line_space   = 0;
 
   lv_style_copy(&style_para_value_pre, &lv_style_scr);
   lv_style_copy(&style_para_value_rel, &lv_style_scr);
@@ -334,8 +334,8 @@ void tft_style_init() {
   style_para_value_rel.line.width        = 0;
   style_para_value_pre.text.letter_space = 0;
   style_para_value_rel.text.letter_space = 0;
-  style_para_value_pre.text.line_space   = -5;
-  style_para_value_rel.text.line_space   = -5;
+  style_para_value_pre.text.line_space   = 0;
+  style_para_value_rel.text.line_space   = 0;
 
   lv_style_copy(&style_num_key_pre, &lv_style_scr);
   lv_style_copy(&style_num_key_rel, &lv_style_scr);
@@ -354,15 +354,14 @@ void tft_style_init() {
     style_num_key_pre.text.font = LV_FONT_DEFAULT;
     style_num_key_rel.text.font = LV_FONT_DEFAULT;
   #endif
-
   style_num_key_pre.line.width        = 0;
   style_num_key_rel.line.width        = 0;
   style_num_key_pre.text.letter_space = 0;
   style_num_key_rel.text.letter_space = 0;
-  style_num_key_pre.text.line_space   = -5;
-  style_num_key_rel.text.line_space   = -5;
-  lv_style_copy(&style_num_text, &lv_style_scr);
+  style_num_key_pre.text.line_space   = 0;
+  style_num_key_rel.text.line_space   = 0;
 
+  lv_style_copy(&style_num_text, &lv_style_scr);
   style_num_text.body.main_color   = LV_COLOR_WHITE;
   style_num_text.body.grad_color   = LV_COLOR_WHITE;
   style_num_text.text.color        = LV_COLOR_BLACK;
@@ -370,7 +369,7 @@ void tft_style_init() {
   style_num_text.text.font         = TERN(HAS_SPI_FLASH_FONT, &gb2312_puhui32, LV_FONT_DEFAULT);
   style_num_text.line.width        = 0;
   style_num_text.text.letter_space = 0;
-  style_num_text.text.line_space   = -5;
+  style_num_text.text.line_space   = 0;
 
   lv_style_copy(&style_sel_text, &lv_style_scr);
   style_sel_text.body.main_color  = LV_COLOR_BACKGROUND;
@@ -380,7 +379,7 @@ void tft_style_init() {
   style_sel_text.text.font        = &gb2312_puhui32;
   style_sel_text.line.width       = 0;
   style_sel_text.text.letter_space  = 0;
-  style_sel_text.text.line_space    = -5;
+  style_sel_text.text.line_space    = 0;
   lv_style_copy(&style_line, &lv_style_plain);
   style_line.line.color   = LV_COLOR_MAKE(0x49, 0x54, 0xFF);
   style_line.line.width   = 1;
@@ -933,6 +932,13 @@ void GUI_RefreshPage() {
         disp_z_offset_value();
       }
       break;
+
+    case TOUCHMI_UI:
+      if (temps_update_flag) {
+        temps_update_flag = false;
+        disp_z_offset_value_TM();
+      }
+      break;
     default: break;
   }
 
@@ -1034,6 +1040,7 @@ void lv_clear_cur_ui() {
     #if ENABLED(TOUCH_SCREEN_CALIBRATION)
       case TOUCH_CALIBRATION_UI:      lv_clear_touch_calibration_screen(); break;
     #endif
+    case TOUCHMI_UI:                  lv_clear_touchmi_settings(); break;
     default: break;
   }
 }
@@ -1138,6 +1145,7 @@ void lv_draw_return_ui() {
       #if HAS_ROTARY_ENCODER
         case ENCODER_SETTINGS_UI:       lv_draw_encoder_settings(); break;
       #endif
+      case TOUCHMI_UI:                  lv_draw_touchmi_settings(); break;
       default: break;
     }
   }
